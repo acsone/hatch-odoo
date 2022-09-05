@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling", "hatch-odoo"]
+build-backend = "hatchling.build"
+
+[project]
+name = "project5"
+version = "1.0"
+readme = "README.md"
+dynamic = ["dependencies"]
+
+[tool.hatch.metadata.hooks.odoo-addons-dependencies]
+[tool.hatch.build.hooks.odoo-addons-dirs]
+
+[tool.hatch-odoo]
+odoo_version_override = "15.0"
+dependencies = ["click-odoo-contrib"]
+addons_dirs = ["addons_group1", "addons_group2"]

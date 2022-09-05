@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling", "hatch-odoo"]
+build-backend = "hatchling.build"
+
+[project]
+name = "project4"
+version = "1.0"
+readme = "README.md"
+dynamic = ["dependencies"]
+
+[tool.hatch.metadata.hooks.odoo-addons-dependencies]
+
+# We dont need the hatch-odoo builds hook since the source is organized in odoo/addons.
+# [tool.hatch.build.hooks.odoo-addons-dirs]
+[tool.hatch.build.targets.wheel]
+packages = ["addons_group1/odoo", "addons_group2/odoo", "project4"]
+[tool.hatch.build]
+dev-mode-dirs = [".", "addons_group1", "addons_group2"]
+
+[tool.hatch-odoo]
+odoo_version_override = "15.0"
+dependencies = ["click-odoo-contrib"]
+addons_dirs = ["addons_group1/odoo/addons", "addons_group2/odoo/addons"]

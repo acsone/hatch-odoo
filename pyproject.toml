@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hatch-odoo"
+description = 'A Hatch plugin for Odoo projects.'
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Stéphane Bidoul", email = "stephane.bidoul@acsone.eu" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Framework :: Hatch",
+  "Framework :: Odoo",
+]
+dependencies = [
+  "hatchling >= 1.4.1",
+  "manifestoo-core[metadata] > 0.8",
+  "tomli ; python_version < '3.11'",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = [
+  "build",
+  "pytest",
+  "pytest-cov",
+]
+
+[project.entry-points.hatch]
+odoo = "hatch_odoo.hooks"
+
+[project.urls]
+Documentation = "https://github.com/acsone/hatch-odoo#readme"
+Issues = "https://github.com/acsone/hatch-odoo/issues"
+Source = "https://github.com/acsone/hatch-odoo"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "build",
+  "pytest",
+  "pytest-cov",
+]
+[tool.hatch.envs.default.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/hatch_odoo --cov=tests"
+no-cov = "cov --no-cov"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["37", "38", "39", "310"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = []
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.isort]
+profile = "black"
