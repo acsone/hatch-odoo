@@ -54,7 +54,7 @@ dependencies = [
   "pytest-cov",
 ]
 [tool.hatch.envs.default.scripts]
-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/hatch_odoo --cov=tests"
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/hatch_odoo --cov=tests -v"
 no-cov = "cov --no-cov"
 
 [[tool.hatch.envs.test.matrix]]

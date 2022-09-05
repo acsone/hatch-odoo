@@ -18,7 +18,14 @@ import pytest
 def test_build(
     project: str, build_via_sdist: bool, data_path: Path, tmp_path: Path
 ) -> None:
-    build_cmd = [sys.executable, "-m", "build", "-n", "-o", tmp_path]
+    build_cmd = [
+        sys.executable,
+        "-m",
+        "build",
+        "-n",
+        "-o",
+        str(tmp_path),  # str for compat with Python 3.7 on Windows
+    ]
     if not build_via_sdist:
         build_cmd.append("-w")
     subprocess.run(

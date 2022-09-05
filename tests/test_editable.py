@@ -34,11 +34,11 @@ def test_odoo_addons_dependencies(
             "pip",
             "install",
             "-e",
-            data_path / project_name,
+            str(data_path / project_name),  # str for compat with Python 3.7 on Windows
             "--no-deps",
             "--no-build-isolation",
             "--target",
-            tmp_path,
+            str(tmp_path),  # str for compat with Python 3.7 on Windows
         ],
         check=True,
     )
