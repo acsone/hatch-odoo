@@ -47,6 +47,9 @@ Source = "https://github.com/acsone/hatch-odoo"
 [tool.hatch.version]
 source = "vcs"
 
+[tool.hatch.build]
+exclude = [".github"]
+
 [tool.hatch.envs.default]
 dependencies = [
   "build",
