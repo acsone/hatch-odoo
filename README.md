@@ -53,6 +53,29 @@ dependencies = ["click-odoo-contrib"]
 addons_dirs = ["."]
 ```
 
+You can then install it together with its dependencies in a virtual environment with a
+procedure like this:
+
+```console
+# python3 -m venv .venv
+# .venv/bin/activate
+# pip install --upgrade pip setuptools wheel
+# pip install -r https://raw.githubusercontent.com/odoo/odoo/15.0/requirements.txt
+# pip install -e git+https://github.com/odoo/odoo@15.0
+# pip install -e .
+# odoo
+```
+
+All dependencies (such as OCA addons and external dependencies) declared in your project
+addons manifests will be downloaded and installed from PyPI automatically.
+
+There is no need to configure addons path, since the addons are installed in
+`odoo/addons`, the regular Python import machinery works out of the box
+
+You can then pin dependencies for reproducibility with `pip freeze` or other tools.
+[pip-deepfreeze](https://pypi.org/project/pip-deepfreeze/) is known to work well with
+git URLs, but other tools such as `pip-tools`, may work as well.
+
 ## Alternative project layouts
 
 Depending on your tastes and requirements, there are several alternative ways to
