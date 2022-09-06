@@ -17,7 +17,7 @@ import pytest
         ("project1", ["src"]),
         ("project2", ["src", "build/__editable_odoo_addons__"]),
         ("project3", [""]),
-        ("project4", ["", "addons_group1", "addons_group2"]),
+        ("project4", ["src", "addons_group1", "addons_group2"]),
         ("project5", ["", "build/__editable_odoo_addons__"]),
     ],
 )

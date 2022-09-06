@@ -10,8 +10,8 @@ dynamic = ["dependencies"]
 
 [tool.hatch.metadata.hooks.odoo-addons-dependencies]
 
-# We dont need the hatch-odoo builds hook since the source is organized in odoo/addons.
-# [tool.hatch.build.hooks.odoo-addons-dirs]
+# We dont need the hatch-odoo build hook since the source code is organized in
+# odoo/addons. [tool.hatch.build.hooks.odoo-addons-dirs]
 [tool.hatch.build.targets.wheel]
 packages = ["src/odoo", "src/project1"]
 

@@ -9,6 +9,7 @@ readme = "README.md"
 dynamic = ["dependencies"]
 
 [tool.hatch.metadata.hooks.odoo-addons-dependencies]
+
 [tool.hatch.build.hooks.odoo-addons-dirs]
 
 [tool.hatch-odoo]
