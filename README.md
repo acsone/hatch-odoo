@@ -18,6 +18,7 @@ be installed with pip:
 
 - [hatch-odoo](#hatch-odoo)
   - [Quick start](#quick-start)
+  - [Alternative project layouts](#alternative-project-layouts)
   - [License](#license)
 
 ## Quick start
@@ -51,6 +52,14 @@ dependencies = ["click-odoo-contrib"]
 # Our addons are in the project root directory.
 addons_dirs = ["."]
 ```
+
+## Alternative project layouts
+
+Depending on your tastes and requirements, there are several alternative ways to
+organize your source code. The test projects in
+[tests/data](https://github.com/acsone/hatch-odoo/tree/main/tests/data) each have a
+README that describe the layout and corresponding tradeoffs, with the corresponding
+`pyproject.toml`.
 
 ## License
 
