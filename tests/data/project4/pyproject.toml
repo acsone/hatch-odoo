@@ -13,9 +13,9 @@ dynamic = ["dependencies"]
 # We dont need the hatch-odoo builds hook since the source is organized in odoo/addons.
 # [tool.hatch.build.hooks.odoo-addons-dirs]
 [tool.hatch.build.targets.wheel]
-packages = ["addons_group1/odoo", "addons_group2/odoo", "project4"]
+packages = ["addons_group1/odoo", "addons_group2/odoo", "src/project4"]
 [tool.hatch.build]
-dev-mode-dirs = [".", "addons_group1", "addons_group2"]
+dev-mode-dirs = ["src", "addons_group1", "addons_group2"]
 
 [tool.hatch-odoo]
 odoo_version_override = "15.0"
