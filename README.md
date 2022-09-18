@@ -36,6 +36,7 @@ build-backend = "hatchling.build"
 name = "MyAwesomeProject"
 version = "1.0"
 readme = "README.md"
+requires-python = ">=3.8"
 # Dependencies are dynamic because they will be generated from Odoo addons manifests.
 dynamic = ["dependencies"]
 
@@ -53,12 +54,12 @@ dependencies = ["click-odoo-contrib"]
 addons_dirs = ["."]
 ```
 
-You can then install it together with its dependencies in a virtual environment with a
-procedure like this:
+You can then install it in editable mode, together with its dependencies in a virtual
+environment with a procedure like this:
 
 ```console
 # python3 -m venv .venv
-# .venv/bin/activate
+# source .venv/bin/activate
 # pip install --upgrade pip setuptools wheel
 # pip install -r https://raw.githubusercontent.com/odoo/odoo/15.0/requirements.txt
 # pip install -e git+https://github.com/odoo/odoo@15.0
@@ -69,7 +70,7 @@ procedure like this:
 All dependencies (such as OCA addons and external dependencies) declared in your project
 addons manifests will be downloaded and installed from PyPI automatically.
 
-There is no need to configure addons path, since the addons are installed in
+There is no need to configure the Odoo addons path: since addons are installed in
 `odoo/addons`, the regular Python import machinery works out of the box
 
 You can then pin dependencies for reproducibility with `pip freeze` or other tools.
@@ -78,7 +79,7 @@ git URLs, but other tools such as `pip-tools`, may work as well.
 
 ## Alternative project layouts
 
-Depending on your tastes and requirements, there are several alternative ways to
+Depending on your taste and requirements, there are several alternative ways to
 organize your source code. The test projects in
 [tests/data](https://github.com/acsone/hatch-odoo/tree/main/tests/data) each have a
 README that describe the layout and corresponding tradeoffs, with the corresponding
