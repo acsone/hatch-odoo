@@ -14,7 +14,7 @@ be installed with pip:
   layout,
 - install the addons in editable mode without fiddling with `--addons-path`,
 
-> 💡 This project is best used when working with end-user projects. To package
+> 💡 This project is best used when working with end-customer projects. To package
 > individual reusable addons, consider the [whool](https://pypi.org/project/whool)
 > project.
 
