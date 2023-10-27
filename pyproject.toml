@@ -19,6 +19,8 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Framework :: Hatch",
   "Framework :: Odoo",
 ]
@@ -61,7 +63,7 @@ cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/ha
 no-cov = "cov --no-cov"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310"]
+python = ["37", "38", "39", "310", "311", "312"]
 
 [tool.coverage.run]
 branch = true
