@@ -77,5 +77,10 @@ exclude_lines = [
   "if TYPE_CHECKING:",
 ]
 
-[tool.isort]
-profile = "black"
+# ruff
+
+[tool.ruff.lint]
+extend-select = [
+  "UP",  # pyupgrade
+  "I",  # isort
+]
