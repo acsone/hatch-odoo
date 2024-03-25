@@ -61,6 +61,6 @@ class OdooAddonsDirsBuildHook(BuildHookInterface):
                     pth_file.write(str(editable_path) + "\n")
                 project_name = get_project_name(self.root)
                 force_include_editable = build_data["force_include_editable"]
-                force_include_editable[
-                    pth_file.name
-                ] = f"{project_name}_editable_odoo_addons.pth"
+                force_include_editable[pth_file.name] = (
+                    f"{project_name}_editable_odoo_addons.pth"
+                )
