@@ -13,7 +13,7 @@ authors = [
   { name = "Stéphane Bidoul", email = "stephane.bidoul@acsone.eu" },
 ]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
