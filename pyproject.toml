@@ -25,8 +25,8 @@ classifiers = [
   "Framework :: Odoo",
 ]
 dependencies = [
-  "hatchling >= 1.4.1",
-  "manifestoo-core[metadata] > 0.8",
+  "hatchling >=1.4.1, !=1.19.0",
+  "manifestoo-core[metadata] >0.8",
   "tomli ; python_version < '3.11'",
 ]
 dynamic = ["version"]
