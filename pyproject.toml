@@ -33,6 +33,11 @@ dynamic = ["version"]
 
 [project.optional-dependencies]
 test = [
+  # Building editable wheels with hatchling (which why do in our tests)  requires
+  # 'editables' to be installed, but it is not a direct dependency of hatchling
+  # (it is provided by the get_requires_for_build_editable hook).
+  # So we install it here as a test dependency.
+  "editables",
   "build",
   "pytest",
   "pytest-cov",
@@ -54,6 +59,7 @@ exclude = [".github"]
 
 [tool.hatch.envs.default]
 dependencies = [
+  "editables",
   "build",
   "pytest",
   "pytest-cov",
