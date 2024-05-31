@@ -44,6 +44,10 @@ requires-python = ">=3.8"
 # Dependencies are dynamic because they will be generated from Odoo addons manifests.
 dynamic = ["dependencies"]
 
+# Let the plugin determine which files to include in wheel
+[tool.hatch.build.targets.wheel]
+bypass-selection = true
+
 # Enable the hatch-odoo metadata hook to generate dependencies from addons manifests.
 [tool.hatch.metadata.hooks.odoo-addons-dependencies]
 # Enable the hatch-odoo build hook to package the Odoo addons into odoo/addons.
