@@ -12,11 +12,23 @@ import pytest
 
 
 @pytest.mark.parametrize(
-    "project", ["project1", "project2", "project3", "project4", "project5", "project6"]
+    "project, addons_only",
+    [
+        ("project1", False),
+        ("project2", False),
+        ("project3", False),
+        ("project4", False),
+        ("project5", False),
+        ("project6", True),
+    ],
 )
 @pytest.mark.parametrize("build_via_sdist", [True, False])
 def test_build(
-    project: str, build_via_sdist: bool, data_path: Path, tmp_path: Path
+    project: str,
+    addons_only: bool,
+    build_via_sdist: bool,
+    data_path: Path,
+    tmp_path: Path,
 ) -> None:
     build_cmd = [
         sys.executable,
@@ -39,4 +51,4 @@ def test_build(
         for addon_name in ("addona", "addonb", "addon_uninstallable"):
             assert f"odoo/addons/{addon_name}/__init__.py" in files
             assert f"odoo/addons/{addon_name}/__manifest__.py" in files
-        assert f"{project}/__init__.py" in files
+        assert addons_only or f"{project}/__init__.py" in files
