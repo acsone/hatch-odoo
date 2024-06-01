@@ -64,3 +64,8 @@ class OdooAddonsDirsBuildHook(BuildHookInterface):
                 force_include_editable[pth_file.name] = (
                     f"{project_name}_editable_odoo_addons.pth"
                 )
+                # work around for https://github.com/acsone/hatch-odoo/issues/12
+                force_include = build_data["force_include"]
+                force_include[pth_file.name] = (
+                    f"{project_name}_editable_odoo_addons.pth"
+                )
