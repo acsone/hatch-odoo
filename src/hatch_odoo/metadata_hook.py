@@ -49,7 +49,7 @@ class OdooAddonsDependenciesMetadataHook(MetadataHookInterface):
             dependencies.update(addon_dependencies)
         return list(dependencies)
 
-    def update(self, metadata):
+    def update(self, metadata: dict) -> None:
         """Update the project table's metadata."""
         if "dependencies" in metadata:
             raise ValueError(

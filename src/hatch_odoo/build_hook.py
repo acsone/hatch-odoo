@@ -7,6 +7,7 @@ import atexit
 import shutil
 import tempfile
 from pathlib import Path
+from typing import Any
 
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
@@ -19,7 +20,7 @@ class OdooAddonsDirsBuildHook(BuildHookInterface):
 
     PLUGIN_NAME = "odoo-addons-dirs"
 
-    def initialize(self, version, build_data):
+    def initialize(self, version: str, build_data: dict[str, Any]) -> None:
         if self.target_name != "wheel":
             return
         hatch_odoo_config = load_hatch_odoo_config(self.root)
