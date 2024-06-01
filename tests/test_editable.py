@@ -59,3 +59,6 @@ def test_odoo_addons_dependencies(
             if (addons_dir / addon_name).is_dir():
                 editable_addon_names.append(addon_name)
     assert sorted(editable_addon_names) == expected_editable_addon_names
+    # Check that the project odoo packages have not been copied to the target.
+    assert not tmp_path.joinpath("odoo").exists()
+    assert not tmp_path.joinpath(project_name).exists()
