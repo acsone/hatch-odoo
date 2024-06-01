@@ -1,0 +1,4 @@
+{
+    "name": "uninstallable",
+    "installable": False,
+}

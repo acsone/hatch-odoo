@@ -19,6 +19,7 @@ import pytest
         ("project3", [""]),
         ("project4", ["src", "addons_group1", "addons_group2"]),
         ("project5", ["", "build/__editable_odoo_addons__"]),
+        ("project6", ["build/__editable_odoo_addons__"]),
     ],
 )
 def test_odoo_addons_dependencies(

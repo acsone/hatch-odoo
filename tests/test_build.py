@@ -12,7 +12,7 @@ import pytest
 
 
 @pytest.mark.parametrize(
-    "project", ["project1", "project2", "project3", "project4", "project5"]
+    "project", ["project1", "project2", "project3", "project4", "project5", "project6"]
 )
 @pytest.mark.parametrize("build_via_sdist", [True, False])
 def test_build(
