@@ -11,7 +11,8 @@ from build import ProjectBuilder
 
 
 @pytest.mark.parametrize(
-    "project_name", ["project1", "project2", "project3", "project4", "project5"]
+    "project_name",
+    ["project1", "project2", "project3", "project4", "project5", "project6"],
 )
 def test_odoo_addons_dependencies(
     project_name: str, data_path: Path, tmp_path: Path
