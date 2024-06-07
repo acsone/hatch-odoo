@@ -55,7 +55,7 @@ jobs:
       - name: Install hatch
         run: pipx install hatch
       - name: Run tests
-        run: hatch run cov
+        run: hatch run +py=${{ matrix.python-version }} test:cov
 
   publish:
     runs-on: ubuntu-latest

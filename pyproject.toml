@@ -57,19 +57,19 @@ source = "vcs"
 [tool.hatch.build]
 exclude = [".github"]
 
-[tool.hatch.envs.default]
+[tool.hatch.envs.test]
 dependencies = [
   "editables",
   "build",
   "pytest",
   "pytest-cov",
 ]
-[tool.hatch.envs.default.scripts]
+[tool.hatch.envs.test.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/hatch_odoo --cov=tests -v"
 no-cov = "cov --no-cov"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310", "311", "312"]
+python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
 
 [tool.coverage.run]
 branch = true
