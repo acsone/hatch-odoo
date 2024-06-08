@@ -39,8 +39,10 @@ test = [
   # So we install it here as a test dependency.
   "editables",
   "build",
+  "packaging",
   "pytest",
   "pytest-cov",
+  "importlib_metadata ; python_version < '3.8'",
 ]
 
 [project.entry-points.hatch]

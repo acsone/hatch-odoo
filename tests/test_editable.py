@@ -8,6 +8,13 @@ import sys
 from pathlib import Path
 from typing import List
 
+from packaging.version import Version
+
+if sys.version_info < (3, 8):
+    import importlib_metadata
+else:
+    import importlib.metadata as importlib_metadata
+
 import pytest
 
 
@@ -45,6 +52,12 @@ def test_odoo_addons_dependencies(
     )
     # Check we have the .pth lines we expect.
     pth_lines = set()
+    # Cope with older hatchling versions which adds the project directory to the
+    # editable paths.
+    if project_name == "project6" and Version(
+        importlib_metadata.version("hatchling")
+    ) < Version("1.20"):
+        expected_editable_pth_lines = expected_editable_pth_lines[:] + [""]
     for pth_file in tmp_path.glob("*.pth"):
         pth_lines.update((tmp_path / pth_file).read_text().splitlines())
     assert pth_lines == {
