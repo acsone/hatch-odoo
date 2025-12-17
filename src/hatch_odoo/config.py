@@ -29,7 +29,7 @@ def load_hatch_odoo_config(root: str) -> dict:
 def iter_addons_dirs(root: str, config: dict) -> Iterator[Path]:
     addons_dirs = config.get("addons_dirs")
     if not addons_dirs:
-        raise RuntimeError("missing tools.hatch-odoo.addons_dir in pyproject.toml")
+        raise RuntimeError("missing tool.hatch-odoo.addons_dir in pyproject.toml")
     for addons_dir in [Path(root) / d for d in addons_dirs]:
         if not addons_dir.is_dir():
             continue

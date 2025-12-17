@@ -56,7 +56,7 @@ class OdooAddonsDependenciesMetadataHook(MetadataHookInterface):
                 "'dependencies' may not be listed in the 'project' table when using "
                 "hatch-odoo to populate dependencies from Odoo addons manifests. "
                 "If you need to add dependencies that are not in Odoo addons "
-                "manifests, please use the 'tools.hatch-odoo.dependencies' key."
+                "manifests, please use the 'tool.hatch-odoo.dependencies' key."
             )
         if "dependencies" not in metadata.get("dynamic", []):
             raise ValueError(
