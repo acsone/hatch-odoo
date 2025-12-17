@@ -4,7 +4,7 @@
 
 import sys
 from pathlib import Path
-from typing import Iterator
+from typing import Iterator, Tuple
 
 if sys.version_info < (3, 11):
     import tomli as tomllib
@@ -29,7 +29,7 @@ def load_hatch_odoo_config(root: str) -> dict:
 def iter_addons_dirs(root: str, config: dict) -> Iterator[Path]:
     addons_dirs = config.get("addons_dirs")
     if not addons_dirs:
-        raise RuntimeError("missing tools.hatch-odoo.addons_dir in pyproject.toml")
+        raise RuntimeError("missing tool.hatch-odoo.addons_dir in pyproject.toml")
     for addons_dir in [Path(root) / d for d in addons_dirs]:
         if not addons_dir.is_dir():
             continue
@@ -40,8 +40,17 @@ def iter_addon_dirs(
     root: str,
     config: dict,
     allow_not_installable: bool,
-) -> Iterator[Path]:
-    for addons_dir in iter_addons_dirs(root, config):
-        for addon_dir in addons_dir.iterdir():
-            if is_addon_dir(addon_dir, allow_not_installable=allow_not_installable):
-                yield addon_dir
+) -> Iterator[Tuple[Path, str]]:
+    addon_dirs = config.get("addon_dirs")
+    if addon_dirs:
+        for addon_name in addon_dirs:
+            addon_dir_path = Path(root, addon_dirs[addon_name])
+            if is_addon_dir(
+                addon_dir_path, allow_not_installable=allow_not_installable
+            ):
+                yield addon_dir_path, addon_name
+    else:
+        for addons_dir in iter_addons_dirs(root, config):
+            for addon_dir in addons_dir.iterdir():
+                if is_addon_dir(addon_dir, allow_not_installable=allow_not_installable):
+                    yield addon_dir, addon_dir.name

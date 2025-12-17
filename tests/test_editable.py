@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2022-present Stéphane Bidoul <stephane.bidoul@acsone.eu>
 # SPDX-FileCopyrightText: 2022-present ACSONE <https://acsone.eu>
+# SPDX-FileCopyrightText: 2025-present XCG SAS <https://orbeet.io>
 #
 # SPDX-License-Identifier: MIT
 
@@ -19,19 +20,21 @@ import pytest
 
 
 @pytest.mark.parametrize(
-    "project_name,expected_editable_pth_lines",
+    "project_name,expected_editable_pth_lines,expected_editable_addon_names",
     [
-        ("project1", ["src"]),
-        ("project2", ["src", "build/__editable_odoo_addons__"]),
-        ("project3", [""]),
-        ("project4", ["src", "addons_group1", "addons_group2"]),
-        ("project5", ["", "build/__editable_odoo_addons__"]),
-        ("project6", ["build/__editable_odoo_addons__"]),
+        ("project1", ["src"], ["addona", "addonb"]),
+        ("project2", ["src", "build/__editable_odoo_addons__"], ["addona", "addonb"]),
+        ("project3", [""], ["addona", "addonb"]),
+        ("project4", ["src", "addons_group1", "addons_group2"], ["addona", "addonb"]),
+        ("project5", ["", "build/__editable_odoo_addons__"], ["addona", "addonb"]),
+        ("project6", ["build/__editable_odoo_addons__"], ["addona", "addonb"]),
+        ("project7", ["build/__editable_odoo_addons__"], ["project7"]),
     ],
 )
 def test_odoo_addons_dependencies(
     project_name: str,
     expected_editable_pth_lines: List[str],
+    expected_editable_addon_names: List[str],
     data_path: Path,
     tmp_path: Path,
 ) -> None:
@@ -64,7 +67,6 @@ def test_odoo_addons_dependencies(
         str(data_path / project_name / line) for line in expected_editable_pth_lines
     }
     # Check all addons are in the editable paths.
-    expected_editable_addon_names = ["addona", "addonb"]
     editable_addon_names = []
     for pth_line in pth_lines:
         addons_dir = Path(pth_line) / "odoo" / "addons"

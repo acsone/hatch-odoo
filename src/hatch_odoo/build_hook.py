@@ -26,14 +26,13 @@ class OdooAddonsDirsBuildHook(BuildHookInterface):
         hatch_odoo_config = load_hatch_odoo_config(self.root)
         if version == "standard":
             force_include = build_data["force_include"]
-            for addon_dir in iter_addon_dirs(
+            for addon_dir, addon_name in iter_addon_dirs(
                 self.root,
                 hatch_odoo_config,
                 # We force-include addons that are installable False to avoid that the
                 # default hatch behaviour adds them at the wrong place in the wheel.
                 allow_not_installable=True,
             ):
-                addon_name = addon_dir.name
                 force_include[addon_dir] = f"odoo/addons/{addon_name}"
         elif version == "editable" and self.config.get("editable_symlinks", True):
             editable_path = Path(self.root) / "build" / "__editable_odoo_addons__"
@@ -41,7 +40,7 @@ class OdooAddonsDirsBuildHook(BuildHookInterface):
                 shutil.rmtree(editable_path)
             editable_odoo_addons_path = editable_path / "odoo" / "addons"
             has_editable_symlinks = False
-            for addon_dir in iter_addon_dirs(
+            for addon_dir, addon_name in iter_addon_dirs(
                 self.root,
                 hatch_odoo_config,
                 allow_not_installable=False,
@@ -50,7 +49,6 @@ class OdooAddonsDirsBuildHook(BuildHookInterface):
                 if not has_editable_symlinks:
                     editable_odoo_addons_path.mkdir(parents=True)
                     has_editable_symlinks = True
-                addon_name = addon_dir.name
                 editable_addon_path = editable_odoo_addons_path / addon_name
                 editable_addon_path.symlink_to(addon_dir)
             # Add .pth to build/__editable_odoo_addons__ in wheel.

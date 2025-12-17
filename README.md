@@ -58,6 +58,14 @@ dependencies = ["click-odoo-contrib"]
 addons_dirs = ["."]
 ```
 
+Instead of setting `tool.hatch-odoo.addons_dirs`, a table can be set up to indicate addon
+name and the relative path.
+
+```toml
+[tool.hatch-odoo.addon_dirs]
+my_module = "."
+```
+
 You can then install it in editable mode, together with its dependencies in a virtual
 environment with a procedure like this:
 
