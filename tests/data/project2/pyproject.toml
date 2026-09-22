@@ -6,6 +6,7 @@ build-backend = "hatchling.build"
 name = "project2"
 version = "1.0"
 readme = "README.md"
+dependencies = ["click-odoo-contrib"]
 dynamic = ["dependencies"]
 
 [tool.hatch.metadata.hooks.odoo-addons-dependencies]
@@ -14,5 +15,4 @@ dynamic = ["dependencies"]
 
 [tool.hatch-odoo]
 odoo_version_override = "15.0"
-dependencies = ["click-odoo-contrib"]
 addons_dirs = ["."]
