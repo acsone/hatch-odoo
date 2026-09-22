@@ -8,7 +8,7 @@ from typing import List
 from hatchling.metadata.plugin.interface import MetadataHookInterface
 from manifestoo_core.metadata import POST_VERSION_STRATEGY_NONE, metadata_from_addon_dir
 
-from .config import iter_addon_dirs, load_hatch_odoo_config
+from .config import iter_addon_dirs, load_hatch_odoo_config, load_project_config
 
 
 class OdooAddonsDependenciesMetadataHook(MetadataHookInterface):
@@ -18,8 +18,12 @@ class OdooAddonsDependenciesMetadataHook(MetadataHookInterface):
     PLUGIN_NAME = "odoo-addons-dependencies"
 
     def _get_odooo_addons_dependencies(self) -> List[str]:
+        project_config = load_project_config(self.root)
         hatch_odoo_config = load_hatch_odoo_config(self.root)
-        dependencies = set(hatch_odoo_config.get("dependencies", []))
+        dependencies = set(
+            project_config.get("dependencies", [])
+            + hatch_odoo_config.get("dependencies", [])
+        )
         addon_dirs = list(
             iter_addon_dirs(
                 self.root,
@@ -51,13 +55,6 @@ class OdooAddonsDependenciesMetadataHook(MetadataHookInterface):
 
     def update(self, metadata: dict) -> None:
         """Update the project table's metadata."""
-        if "dependencies" in metadata:
-            raise ValueError(
-                "'dependencies' may not be listed in the 'project' table when using "
-                "hatch-odoo to populate dependencies from Odoo addons manifests. "
-                "If you need to add dependencies that are not in Odoo addons "
-                "manifests, please use the 'tools.hatch-odoo.dependencies' key."
-            )
         if "dependencies" not in metadata.get("dynamic", []):
             raise ValueError(
                 "'dependencies' must be listed in 'project.dynamic' when using "

@@ -20,6 +20,12 @@ def get_project_name(root: str) -> str:
     return pyproject["project"]["name"]
 
 
+def load_project_config(root: str) -> dict:
+    pyproject_toml = Path(root) / "pyproject.toml"
+    pyproject = tomllib.loads(pyproject_toml.read_text(encoding="utf-8"))
+    return pyproject.get("project", {})
+
+
 def load_hatch_odoo_config(root: str) -> dict:
     pyproject_toml = Path(root) / "pyproject.toml"
     pyproject = tomllib.loads(pyproject_toml.read_text(encoding="utf-8"))
